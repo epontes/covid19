@@ -83,4 +83,11 @@ let countries = [
     CountryModel(iso2: "PT", iso3: "PRT", name: "Portugal", image: "pt"),
     CountryModel(iso2: "IT", iso3: "ITA", name: "Italy", image: "it"),
     CountryModel(iso2: "ES", iso3: "Spain", name: "Spain", image: "es"),
+    CountryModel(iso2: "GB", iso3: "GBR", name: "Inglaterra", image: "gb"),
+    
+    CountryModel(iso2: "AR", iso3: "ARG", name: "Argentina", image: "ar"),
+    
+     CountryModel(iso2: "CL", iso3: "CHL", name: "Chile", image: "cl"),
+    
+     CountryModel(iso2: "CO", iso3: "COL", name: "Colombia", image: "co")
 ]
