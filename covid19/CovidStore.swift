@@ -69,10 +69,10 @@ class CountryStore: ObservableObject {
             }
             
             self.lastDeaths.sort{ (t, t1) -> Bool in
-                if t.date < t1.date{
-                    return false
-                }else {
+                if t.deaths > t1.deaths{
                     return true
+                }else {
+                    return false
                 }
                 
             }

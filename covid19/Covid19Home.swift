@@ -233,9 +233,10 @@ struct BottomView: View {
                 .frame(width: 40, height: 5)
                 .cornerRadius(3.5)
                 .opacity(0.1)
+               
             
             HStack {
-                Text("\(store.selectCountry)")
+                Text("\(store.selectCountry)" )
                     .font(.title)
                     .fontWeight(.bold)
                     .lineSpacing(4)
@@ -274,7 +275,7 @@ struct BottomView: View {
         .padding()
         .padding(.horizontal,20)
         .frame(maxWidth: .infinity)
-        .background(Color.white)
+        .background(Color.black)
         .cornerRadius(30)
         .shadow(radius: 20)
          
