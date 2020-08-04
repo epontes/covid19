@@ -18,8 +18,21 @@ struct GlobalCases: Codable{
 
 }
 
+//struct Last7GlobalDaysOfDeath: Decodable{
+// 
+//    var  type: String
+//    var  date: String
+//    var  deaths: Int
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case type
+//        case date
+//        case deatths
+//    }
+//}
+
 struct TimeLine: Codable {
-     var timeline : [String : [String : Int]]
+    var timeline : [String :[String : Int]]
     
 }
 
@@ -53,7 +66,7 @@ class API  {
     
     
     func getDeathsDays(name: String, completion: @escaping (TimeLine) -> () )  {
-        guard let url = URL(string: "https://disease.sh/v2/historical/\(name)?lastdays=10") else {return}
+        guard let url = URL(string: "https://disease.sh/v2/historical/\(name)?lastdays=7") else {return}
         
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             
@@ -64,4 +77,19 @@ class API  {
         }
     .resume()
      }
+    
+    func getLast7GlobalDeathDays(completion: @escaping ([String: [String: Int]]) -> () ) {
+        
+        guard let url =  URL(string: "https://disease.sh/v3/covid-19/historical/all?lastdays=7") else {return}
+        
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            
+            let globalDeaths =  try! JSONDecoder().decode([String: [String: Int]].self, from: data!)
+            
+            DispatchQueue.main.sync {
+                completion(globalDeaths)
+            }
+        }
+        .resume()
+    }
 }

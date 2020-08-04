@@ -12,10 +12,33 @@ struct CountryList: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var store = CountryStore()
     
+    @State var searchText = ""
     var body: some View {
         NavigationView {
+            
             List {
-                ForEach(countries) { country in
+                HStack {
+                    
+                    TextField("Search by Country", text: self.$searchText)
+                        .padding(7)
+                        .padding(.horizontal, 25)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                    
+                        .overlay(
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                    .foregroundColor(.gray)
+                                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                    .padding(.leading, 10)
+                            }
+                        )
+                        .padding(.horizontal, 10)
+                        
+                    
+                    
+                }
+                ForEach(countries.filter({searchText.isEmpty ? true : $0.name.contains(searchText)})) { country in
   
                         HStack {
                            
@@ -78,7 +101,7 @@ struct CountryModel: Identifiable {
 }
 
 let countries = [
-    CountryModel(iso2: "BR", iso3: "BRA", name: "Brasil", image: "br"),
+    CountryModel(iso2: "BR", iso3: "BRA", name: "Brazil", image: "br"),
     CountryModel(iso2: "US", iso3: "USA", name: "United States", image: "us"),
     CountryModel(iso2: "PT", iso3: "PRT", name: "Portugal", image: "pt"),
     CountryModel(iso2: "IT", iso3: "ITA", name: "Italy", image: "it"),
@@ -91,3 +114,4 @@ let countries = [
     
      CountryModel(iso2: "CO", iso3: "COL", name: "Colombia", image: "co")
 ]
+    
